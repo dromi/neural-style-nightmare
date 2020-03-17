@@ -8,3 +8,5 @@ https://github.com/anishathalye/neural-style (place in `impl/` folder for curren
 But it might be subject to change later on in the process. Other candidates to consider:
 
 https://github.com/jcjohnson/neural-style
+
+This project was originally inspired by this article: https://hackernoon.com/non-artistic-style-transfer-or-how-to-draw-kanye-using-captain-picards-face-c4a50256b814
