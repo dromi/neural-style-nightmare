@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+remote-ns/
+local-ns/
+.idea/
