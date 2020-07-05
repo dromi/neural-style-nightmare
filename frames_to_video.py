@@ -1,17 +1,22 @@
 import glob
-import os
+import sys
 
 from shutil import copyfile
 
-INPUT_DIR = 'result/'
-OUTPUT_DIR = 'result_spaced/'
 
+"""
+Collapse frames from a dir to a video
+arg 1: input folder path
+arg 2: output video folder
+"""
 
 if __name__ == '__main__':
-    files = glob.glob(INPUT_DIR + "*.jpg")
-    # output_files = glob.glob(OUTPUT_DIR + "*.jpg")
+    input_dir = sys.argv[1]
+    output_folder = sys.argv[2]
+
+    files = glob.glob(input_dir + "*.jpg")
 
     for f in files:
         file_number = ''.join(c for c in f if c.isdigit())
         new_file_name = 'output_frame-' + "{0:0=5d}".format(int(file_number)) + '.jpg'
-        copyfile(f, OUTPUT_DIR + new_file_name)
+        copyfile(f, output_folder + new_file_name)

@@ -6,9 +6,13 @@ import cv2
 import numpy as np
 
 
-INPUT = 'content/face/frame0030.jpg'
-W = 7
-H = 10
+"""
+Create tiled images from single image
+"""
+
+INPUT = 'local-ns/gogh/base.jpg'
+W = 1
+H = 1
 
 target_img_size = (500, 500)
 
@@ -38,8 +42,6 @@ def tile_and_train(content_img, tile_img, width_tiles, height_tiles, lr=10, tmp_
     os.system(stry)
     os.remove(tmp_dest)
 
+
 if __name__ == '__main__':
-    tile_and_train(INPUT, INPUT, 8, 7, sim_args=str(' '.join(sys.argv[1:])), output_dir='results/tiles/')
-    # for i in range(10):
-    #     tile_and_train(INPUT, INPUT, 20, 20, i+1, sim_args=str(' '.join(sys.argv[1:])), output_dir='results/tiles/lr_exp/')
-    # tile_image(INPUT, W, H, 'something.jpg')
+    tile_image(INPUT, W, H, 'something.jpg')
