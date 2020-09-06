@@ -14,7 +14,7 @@ def format_jcj(content, styles, output=None, initial=None, sim_args=None):
     essential = "-gpu 0 -backend nn -optimizer lbfgs -model_file ../jcj/models/VGG_ILSVRC_19_layers.caffemodel -proto_file ../jcj/models/VGG_ILSVRC_19_layers_deploy.prototxt"
     stry = "th ../jcj/neural_style.lua -style_image " + styles + " -content_image " + content + " " + essential
     if output is not None:
-        stry += " --output " + output
+        stry += " -output_image " + output
     if initial is not None:
         stry += " -init image -init_image " + initial
     if sim_args is not None:
