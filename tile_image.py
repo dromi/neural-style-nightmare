@@ -5,6 +5,7 @@ import sys
 import cv2
 import numpy as np
 
+from cmd_format import format_anishathalye, format_jcj
 
 """
 Create tiled images from single image
@@ -36,7 +37,9 @@ def tile_image(input_image, width_tiles, height_tiles, dest):
 def tile_and_train(content_img, tile_img, width_tiles, height_tiles, lr=10, tmp_dest='tmp_tiled.jpg', sim_args='', output_dir=''):
     tile_image(tile_img, width_tiles, height_tiles, tmp_dest)
     output_file_name = content_img.split("/")[-1].split('.')[0] + "-tile-" + str(width_tiles) + "x" + str(height_tiles) + "_lr" + str(lr) + ".jpg"
-    stry = "python impl/neural_style.py --content " + content_img + " --styles " + tmp_dest + " --output " + output_dir + output_file_name + " " + sim_args + " --network impl/imagenet-vgg-verydeep-19.mat --learning-rate " + str(lr)
+    # stry = "python impl/neural_style.py --content " + content_img + " --styles " + tmp_dest + " --output " + output_dir + output_file_name + " " + sim_args + " --network impl/imagenet-vgg-verydeep-19.mat --learning-rate " + str(lr)
+    stry = format_jcj(content_img, tmp_dest, output=output_dir+output_file_name, sim_args=sim_args)
+
     print("RUNNING")
     print(stry)
     os.system(stry)
@@ -44,4 +47,5 @@ def tile_and_train(content_img, tile_img, width_tiles, height_tiles, lr=10, tmp_
 
 
 if __name__ == '__main__':
-    tile_image(INPUT, W, H, 'something.jpg')
+    # tile_image(INPUT, W, H, 'something.jpg')
+    tile_and_train('videos/plane/frame0000.jpg', 'videos/plane/frame0000.jpg', 4, 5)
