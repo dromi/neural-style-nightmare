@@ -48,4 +48,4 @@ def tile_and_train(content_img, tile_img, width_tiles, height_tiles, lr=10, tmp_
 
 if __name__ == '__main__':
     # tile_image(INPUT, W, H, 'something.jpg')
-    tile_and_train('videos/plane/frame0000.jpg', 'videos/plane/frame0000.jpg', 4, 5)
+    tile_and_train(sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]))
