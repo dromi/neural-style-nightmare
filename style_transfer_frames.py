@@ -3,12 +3,12 @@ import os
 import sys
 from shutil import copyfile
 
-from cmd_format import format_anishathalye
+from cmd_format import format_jcj
 from tile_image import tile_image
 
 INPUT_DIR = 'data/'
 OUTPUT_DIR = 'result/'
-FORMATTER = format_anishathalye
+FORMATTER = format_jcj
 
 """
 Collection of style transfer schemes
@@ -86,8 +86,9 @@ def transfer_with_same_tiled_style(frame_dir, output_dir, tiling_shape, sim_args
 
     tile_image(f0, width_tiles, height_tiles, tmp_dest)
 
-    stry = "python impl/neural_style.py --content " + f0 + " --styles " + tmp_dest + " --output " + output_dir + \
-           "frame-" + "%04d" % 0 + ".jpg " + sim_args + " --network impl/imagenet-vgg-verydeep-19.mat"
+    # stry = "python impl/neural_style.py --content " + f0 + " --styles " + tmp_dest + " --output " + output_dir + \
+    #        "frame-" + "%04d" % 0 + ".jpg " + sim_args + " --network impl/imagenet-vgg-verydeep-19.mat"
+    stry = FORMATTER(f0, tmp_dest, output=output_dir + "frame-" + "%04d" % 0 + ".jpg", initial=f0, sim_args=sim_args)
     print("RUNNING")
     print(stry)
     os.system(stry)
@@ -95,8 +96,10 @@ def transfer_with_same_tiled_style(frame_dir, output_dir, tiling_shape, sim_args
     for f in files[1:]:
         file_number = int(''.join(c for c in f if c.isdigit()))
         tile_image(f, width_tiles, height_tiles, tmp_dest)
-        stry = "python impl/neural_style.py --content " + f + " --styles " + tmp_dest + " --output " + output_dir + "frame-"\
-               + "%04d" % file_number + ".jpg" + ' --initial ' + output_dir + "frame-" + "%04d" % int(file_number - 1) + ".jpg " + sim_args  + " --network impl/imagenet-vgg-verydeep-19.mat"
+        # stry = "python impl/neural_style.py --content " + f + " --styles " + tmp_dest + " --output " + output_dir + "frame-"\
+        #        + "%04d" % file_number + ".jpg" + ' --initial ' + output_dir + "frame-" + "%04d" % int(file_number - 1) + ".jpg " + sim_args  + " --network impl/imagenet-vgg-verydeep-19.mat"
+
+        stry = FORMATTER(f, tmp_dest, output=output_dir + "frame-" + "%04d" % file_number + ".jpg", sim_args=sim_args, initial=output_dir + "frame-" + "%04d" % int(file_number - 1) + ".jpg")
         print("RUNNING")
         print(stry)
         os.system(stry)
