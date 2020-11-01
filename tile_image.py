@@ -47,5 +47,7 @@ def tile_and_train(content_img, tile_img, width_tiles, height_tiles, lr=10, tmp_
 
 
 if __name__ == '__main__':
-    # tile_image(INPUT, W, H, 'something.jpg')
-    tile_and_train(sys.argv[1], sys.argv[2], int(sys.argv[3]), int(sys.argv[4]))
+    if sys.argv[1] == 'tile':
+        tile_image(sys.argv[2], int(sys.argv[4]), int(sys.argv[5]), sys.argv[3])
+    else:
+        tile_and_train(sys.argv[2], sys.argv[3], int(sys.argv[4]), int(sys.argv[5]))
