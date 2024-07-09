@@ -148,4 +148,5 @@ def transfer_same_image_moving_style(input_path, output_dir, style_dir, tiling_s
 if __name__ == '__main__':
     # transfer_onto_self()
     # transfer_with_same_style('content/face/', 'examples/1-style.jpg', 'results/face_gogh_video/', '--iterations 500')
-    transfer_with_same_tiled_style("remote-ns/content/face/", "results/tiles/face_tile_face/", (8,7), sim_args=str(' '.join(sys.argv[1:])))
+    # transfer_with_same_tiled_style("remote-ns/content/face/", "results/tiles/face_tile_face/", (5,5), sim_args=str(' '.join(sys.argv[1:])))
+    transfer_with_same_tiled_style("gcs_bucket/planetile/frames/", "frameout/", (5,5), sim_args="-seed 12345 -num_iterations 500 -style_scale 0.75")
